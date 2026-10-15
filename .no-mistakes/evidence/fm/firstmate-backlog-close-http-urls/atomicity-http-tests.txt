@@ -1,0 +1,3 @@
+ok - session start replays a recorded plain-http Forgejo close with its URL as a note
+ok - session start replays a recorded https Forgejo close with its --pr link
+ok - recovery rejects malformed PR URL values

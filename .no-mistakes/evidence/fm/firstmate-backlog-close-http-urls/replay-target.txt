@@ -1,0 +1,3 @@
+BOOTSTRAP_INFO: closed the backlog item for task-x3 after interrupted cleanup; its endpoint or local copy may remain and should be reconciled
+MISSING: treehouse (install: curl -fsSL https://kunchenguid.github.io/treehouse/install.sh | sh)
+MISSING: no-mistakes (install: curl -fsSL https://raw.githubusercontent.com/kunchenguid/no-mistakes/main/docs/install.sh | sh)

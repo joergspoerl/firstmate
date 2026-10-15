@@ -1,0 +1,9 @@
+== poll watcher (armed copy) on MERGED PR #1 via real tea ==
+output=<merged> exit=0 (one merged line expected)
+
+== meta after merge ==
+kind=ship
+mode=no-mistakes
+project=demo
+worktree=/Users/jorgsporl/.no-mistakes/worktrees/a915877290ea/01M4ZKPBWSGTKQ5R7TD909TNCK/.lab/live-home/wt-task
+pr=http://127.0.0.1:30080/fm/demo/pulls/1

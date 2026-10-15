@@ -1,0 +1,16 @@
+== BASE (9b1ada0, before fix): bin/fm-pr-check.sh ==
+error: invalid PR check request
+exit=2
+
+== poll watcher on OPEN PR #1 (expect silence) ==
+(eval):10: permission denied: .lab/live-home/state/task-x1.check.sh
+output=<> exit=126
+
+== live PR state via tea (what the watcher sees) ==
+
+  # #1 task x1 (open)                                                         
+                                                                              
+  @fm created 2026-10-15 13:18	**main** <- **fm/task-x1**                      
+                                                                              
+== poll watcher (armed copy) on OPEN PR #1 via real tea ==
+output=<> exit=0 (silence expected: PR is open)

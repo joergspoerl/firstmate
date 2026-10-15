@@ -1,0 +1,18 @@
+$ bin/fm-pr-check.sh task-x1 http://127.0.0.1:30080/fm/demo/pulls/1
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+fm-contributions: data directory unavailable
+contributions: observation not armed; coverage is unconfirmed
+armed: state/task-x1.check.sh
+exit=0
+--- meta ---
+kind=ship
+mode=no-mistakes
+project=demo
+worktree=/Users/jorgsporl/.no-mistakes/worktrees/a915877290ea/01M4ZKPBWSGTKQ5R7TD909TNCK/.lab/live-home/wt-task
+pr=http://127.0.0.1:30080/fm/demo/pulls/1
+--- poll sidecar ---
+forgejo
+http://127.0.0.1:30080/fm/demo/pulls/1
+127.0.0.1:30080
+fm/demo
+1

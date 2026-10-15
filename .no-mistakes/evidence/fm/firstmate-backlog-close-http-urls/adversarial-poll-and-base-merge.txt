@@ -1,0 +1,9 @@
+== BASE fm-pr-merge.sh on http URL (expect 'invalid PR merge request') ==
+error: invalid PR merge request
+exit=2
+
+== adversarial: sidecar with port stripped from authority (expect silence) ==
+output=<> (silence expected)
+
+== adversarial: sidecar rewritten to github.com spoof (expect silence) ==
+output=<> (silence expected)

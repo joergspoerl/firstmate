@@ -1,0 +1,12 @@
+REJECT  http://pi4:3001/joergspoerl/Scan2Excel/pulls/7
+REJECT  http://127.0.0.1:30080/fm/demo/pulls/1
+REJECT  https://git.example.com:8443/my-org/repo/pulls/42
+ACCEPT  provider=         host=                   path=                         number=  https://git.example.com/my-org/repo/pulls/42
+REJECT  http://github.com/fixture/fixture-repo/pulls/1
+REJECT  http://git.example.com/fixture/fixture-repo/pull/1
+REJECT  http://git.example.com/group/sub/project/pulls/1
+REJECT  http://pi4:03001/joergspoerl/Scan2Excel/pulls/7
+REJECT  https://git.example.com:123456/fixture/fixture-repo/pulls/1
+REJECT  https://git.example.com:abc/fixture/fixture-repo/pulls/1
+REJECT  http://foo.-bar.com/fixture/fixture-repo/pulls/1
+REJECT  https://github.com/fixture/fixture-repo/pulls/1

@@ -1,0 +1,1 @@
+PASS: emits exactly 'merged'

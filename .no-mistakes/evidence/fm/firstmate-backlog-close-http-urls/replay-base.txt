@@ -1,0 +1,3 @@
+BACKLOG_RECONCILE: task-x3: recorded backlog close could not be replayed: invalid pending-close arguments in /Users/jorgsporl/.no-mistakes/worktrees/a915877290ea/01M4ZKPBWSGTKQ5R7TD909TNCK/.lab/lab-replay-base/state/task-x3.backlog-close
+MISSING: treehouse (install: curl -fsSL https://kunchenguid.github.io/treehouse/install.sh | sh)
+MISSING: no-mistakes (install: curl -fsSL https://raw.githubusercontent.com/kunchenguid/no-mistakes/main/docs/install.sh | sh)

@@ -1,0 +1,15 @@
+$ mkdir -p data && bin/fm-pr-merge.sh task-x1 http://127.0.0.1:30080/fm/demo/pulls/1
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+armed: state/task-x1.check.sh
+error: refusing to merge http://127.0.0.1:30080/fm/demo/pulls/1
+  - the combined commit status is "none", not success
+exit=1
+
+$ bin/fm-pr-merge.sh task-x1 http://127.0.0.1:30080/fm/demo/pulls/1   (after green combined status on head)
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+armed: state/task-x1.check.sh
+verified: http://127.0.0.1:30080/fm/demo/pulls/1 is open and mergeable, with a successful combined status at head eedf41d73eb103be89a3a47765496573dec7c87f
+exit=0
+
+== PR #1 state after merge (live API) ==
+state= closed merged= True merged_commit= 75c4f11df816

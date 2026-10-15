@@ -1,0 +1,9 @@
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /Users/jorgsporl/.no-mistakes/worktrees/a915877290ea/01M4ZKPBWSGTKQ5R7TD909TNCK/.lab/lab-base
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+●  WATCHER DOWN - SUPERVISION IS OFF
+●  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).
+●  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.
+●  This is a supervision warning only; the guarded operation WILL still run.
+●  watcher supervision needs Stop-owned automatic recovery; inspect the hook registration and startup status before ending the turn.
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+error: the pending backlog close for task-x2 could not be recorded (invalid pending-close arguments in /Users/jorgsporl/.no-mistakes/worktrees/a915877290ea/01M4ZKPBWSGTKQ5R7TD909TNCK/.lab/lab-base/state/.task-x2.backlog-close.34018); retaining every durable task record

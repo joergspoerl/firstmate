@@ -1,0 +1,12 @@
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /Users/jorgsporl/.no-mistakes/worktrees/a915877290ea/01M4ZKPBWSGTKQ5R7TD909TNCK/.lab/lab-target
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+●  WATCHER DOWN - SUPERVISION IS OFF
+●  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).
+●  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.
+●  This is a supervision warning only; the guarded operation WILL still run.
+●  watcher supervision needs Stop-owned automatic recovery; inspect the hook registration and startup status before ending the turn.
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+warning: lsof is unavailable; cannot resolve the tmux pane process group for task-x2
+/Users/jorgsporl/.no-mistakes/worktrees/a915877290ea/01M4ZKPBWSGTKQ5R7TD909TNCK/.lab/case/project: synced c9dc963..4724a08
+teardown task-x2 complete (window firstmate:fm-task-x2, worktree /Users/jorgsporl/.no-mistakes/worktrees/a915877290ea/01M4ZKPBWSGTKQ5R7TD909TNCK/.lab/case/wt2c)
+Backlog: task-x2 is closed in /Users/jorgsporl/.no-mistakes/worktrees/a915877290ea/01M4ZKPBWSGTKQ5R7TD909TNCK/.lab/lab-target/data/backlog.md. Run bin/fm-tasks-axi.sh ready for dependency-cleared candidates, check date gates, and dispatch only work whose blockers are gone and date is due.

@@ -1,0 +1,28 @@
+live process pid: 51593 (command: sleep 600)
+lstart under de_DE.UTF-8 : Fr. 16 Okt. 15:59:04 2026   
+lstart under C           : Fri Oct 16 15:59:04 2026    
+
+== incident reproduction with BASE (pre-fix) lib ==
+lock record at /private/var/folders/1d/5hhdchyx13v6gd2z7bsln_qm0000gn/T/fm-rj-lab.gitHLI/state-base/worker.lock
+recorded start: Fr. 16 Okt. 15:59:04 2026   
+checker-locale=C rc=1 owner_pid=
+BASE: C-locale checker declared the de_DE-recorded live owner DEAD (rc=1) — incident mechanism reproduced
+
+== same scenario with TARGET (fixed) lib ==
+lock record at /private/var/folders/1d/5hhdchyx13v6gd2z7bsln_qm0000gn/T/fm-rj-lab.gitHLI/state-target/worker.lock
+recorded start: Fri Oct 16 15:59:04 2026    
+checker-locale=C rc=0 owner_pid=51593
+TARGET: de_DE-recorded live owner verified ALIVE by C-locale checker — fix works
+
+== adversarial reverse: recorded under C, checked under de_DE (fixed lib) ==
+lock record at /private/var/folders/1d/5hhdchyx13v6gd2z7bsln_qm0000gn/T/fm-rj-lab.gitHLI/state-rev/worker.lock
+checker-locale=de_DE.UTF-8 rc=0 owner_pid=51593
+reverse check: alive — pinning is bidirectional
+
+== guard: a genuinely dead owner must stay dead under the fix ==
+guard: recording a dead pid fails as expected (rc=1) — pinning masks no real deaths
+
+== stale-record guard: pid alive but start mismatched must stay dead ==
+checker-locale=C rc=1 owner_pid=
+guard: stale start record correctly declared dead (rc=1)
+live pid 51593 terminated; lab removed on exit

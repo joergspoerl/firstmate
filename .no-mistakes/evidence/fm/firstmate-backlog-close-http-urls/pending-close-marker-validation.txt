@@ -1,0 +1,7 @@
+### The incident marker: --pr http://pi4:3001/joergspoerl/Scan2Excel/pulls/7
+
+BASE   (127f0f30): REFUSED: invalid pending-close arguments in /var/folders/1d/5hhdchyx13v6gd2z7bsln_qm0000gn/T//fm-marker.hfPhpR/state/demo-task.backlog-close
+CHANGE (0304c9a3): ACCEPTED args=[--pr http://pi4:3001/joergspoerl/Scan2Excel/pulls/7]
+
+### Control: a non-http(s) scheme marker must stay refused on the changed code
+CHANGE (0304c9a3): REFUSED: invalid pending-close arguments in /var/folders/1d/5hhdchyx13v6gd2z7bsln_qm0000gn/T//fm-marker.hfPhpR/state/demo-task-bad.backlog-close

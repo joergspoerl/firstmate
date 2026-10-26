@@ -1,0 +1,7 @@
+### fm-brief.sh scaffolded brief.md, PR-URL instruction (changed code)
+39:   Whenever you mention a PR anywhere - a status line, your terminal, a summary - write its full
+40-   URL exactly as the forge printed it, http included, never a bare number such as "PR 108";
+
+### same instruction at base commit 127f0f30
+39:   Whenever you mention a PR anywhere - a status line, your terminal, a summary - write its full
+40-   https:// URL exactly as the forge printed it, never a bare number such as "PR 108"; firstmate

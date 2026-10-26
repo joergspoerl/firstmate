@@ -1,0 +1,5 @@
+### fm-branch-prompt.sh emitted prompt, PR-URL instruction line
+61:- work ready for review - include the PR's full URL when the task's ready status or `pr=` metadata holds one, otherwise only the identifier you actually have;
+
+### same line at base commit 127f0f30
+61:- work ready for review - include the PR's full https:// URL when the task's ready status or `pr=` metadata holds one, otherwise only the identifier you actually have;

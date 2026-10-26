@@ -1,0 +1,11 @@
+### Scenario: the exact URL from the incident report, driven through the real CLIs
+URL under test: http://pi4:3001/joergspoerl/Scan2Excel/pulls/7
+
+BASE(127f0f30)     fm-pr-check.sh   exit=2  error: invalid PR check request
+BASE(127f0f30)     fm-pr-merge.sh   exit=2  error: invalid PR merge request
+CHANGE(0304c9a3)   fm-pr-check.sh   exit=1  error: task metadata is unavailable
+CHANGE(0304c9a3)   fm-pr-merge.sh   exit=1  error: task metadata is unavailable
+
+### Control: a non-URL value must still be refused by the changed code
+CHANGE(0304c9a3)   fm-pr-check.sh   exit=2  error: invalid PR check request
+CHANGE(0304c9a3)   fm-pr-merge.sh   exit=2  error: invalid PR merge request

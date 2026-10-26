@@ -98,7 +98,7 @@ $ tea login list --output json
 ]
 ```
 
-Every Forgejo read parses this list as JSON with `jq`, matches the validated PR host against each login's bare hostname (stripping scheme, userinfo, port, and path), and refuses when zero or more than one login matches, rather than guessing.
+Every Forgejo read parses this list as JSON with `jq`, matches the validated PR host - with any port of its own stripped - against each login's bare hostname (stripping scheme, userinfo, port, and path), and refuses when zero or more than one login matches, rather than guessing.
 It never splits the output line by line, because a login printed as one compact object would then read its name where the url belongs.
 `fm_pr_forgejo_login` in `bin/fm-pr-lib.sh` owns that match for every sourcing script; `bin/fm-pr-poll.sh` is a static, standalone watcher body with no sourced dependency, so it keeps its own copy and re-derives the match on every poll instead of trusting a name recorded anywhere durable.
 
@@ -139,7 +139,7 @@ $ state/task-f1.check.sh
 merged
 ```
 
-The `localhost:3980` login's actual port never appears in the canonical PR URL or the poll's host comparison - login matching only ever compares bare hostnames - so this reproduces correctly for an instance reachable on the standard port with no explicit port in its URL, which is the realistic self-hosted shape.
+The `localhost:3980` login's actual port never decides the match - login matching strips any port from both sides and compares bare hostnames - so this reproduces correctly for an instance reachable on the standard port with no explicit port in its URL, and a recorded PR URL that does carry the instance's port still resolves the same login.
 
 ## A missing tea produces no wake, never a false merge
 

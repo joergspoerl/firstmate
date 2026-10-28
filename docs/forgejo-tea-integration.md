@@ -139,7 +139,8 @@ $ state/task-f1.check.sh
 merged
 ```
 
-Login matching compares complete authorities, including ports, so this flow requires the recorded PR URL and the login URL to name the same host and explicit port. A `localhost:3980` login does not match `localhost` or `localhost` on another port.
+Current login matching compares complete authorities, including ports, so a `localhost:3980` login matches neither `localhost` nor another port on `localhost`.
+The `https://localhost` commands in this record were captured before exact-authority matching; with the fixture login shown above, current commands must instead use `http://localhost:3980/fixture/fixture-repo/pulls/<n>`.
 
 ## A missing tea produces no wake, never a false merge
 

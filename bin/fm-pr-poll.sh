@@ -221,10 +221,10 @@ case "$provider" in
     # registered login matches, rather than picking one arbitrarily.
     # The list is parsed as JSON, never split on quotes per line, so a login
     # printed as one compact object still matches; this is the same filter
-    # bin/fm-pr-lib.sh's fm_pr_forgejo_login applies, matching by hostname
-    # with any port stripped from both sides.
+    # bin/fm-pr-lib.sh's fm_pr_forgejo_login applies, matching the complete
+    # authority including any port.
     login=$(
-      tea login list --output json 2>/dev/null | jq -er --arg h "$login_host" '
+      tea login list --output json 2>/dev/null | jq -er --arg h "$host" '
         if type == "array" then
           [ .[]
             | select(type == "object" and (.name | type) == "string" and (.name | length) > 0
@@ -232,8 +232,7 @@ case "$provider" in
             | select((.url
                       | sub("^[A-Za-z][A-Za-z0-9+.-]*://"; "")
                       | sub("[/?#].*$"; "")
-                      | sub("^.*@"; "")
-                      | sub(":[0-9]+$"; "")) == $h)
+                      | sub("^.*@"; "")) == $h)
             | .name ]
           | if length == 1 then .[0] else error("not exactly one matching login") end
         else

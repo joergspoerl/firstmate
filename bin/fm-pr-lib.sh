@@ -1172,11 +1172,10 @@ FIELDS
 # than split on quotes per line, because tea's JSON is not guaranteed to put
 # each field on its own line: a login printed as one compact object would hand
 # a line-oriented split the name where it expects the url, and arming would
-# then refuse every host. A login matches when its url's host - scheme,
-# userinfo, port, and path stripped - is exactly <host> with any port of its
-# own stripped the same way, so a recorded Forgejo authority with a port still
-# resolves the login registered for that instance. bin/fm-pr-poll.sh keeps
-# its own copy of this filter because the watcher body sources nothing.
+# then refuse every host. A login matches when its url's authority - scheme,
+# userinfo, and path stripped, with any port preserved - is exactly <host>.
+# bin/fm-pr-poll.sh keeps its own copy of this filter because the watcher body
+# sources nothing.
 # shellcheck disable=SC2016 # $h is a jq variable bound by --arg, not a shell one.
 FM_PR_FORGEJO_LOGIN_JQ='
   if type == "array" then
@@ -1186,8 +1185,7 @@ FM_PR_FORGEJO_LOGIN_JQ='
       | select((.url
                 | sub("^[A-Za-z][A-Za-z0-9+.-]*://"; "")
                 | sub("[/?#].*$"; "")
-                | sub("^.*@"; "")
-                | sub(":[0-9]+$"; "")) == $h)
+                | sub("^.*@"; "")) == $h)
       | .name ]
     | if length == 1 then .[0] else error("not exactly one matching login") end
   else
@@ -1196,7 +1194,7 @@ FM_PR_FORGEJO_LOGIN_JQ='
 fm_pr_forgejo_login() {  # <host>
   command -v tea >/dev/null 2>&1 || return 1
   command -v jq >/dev/null 2>&1 || return 1
-  tea login list --output json 2>/dev/null | jq -er --arg h "${1%:*}" "$FM_PR_FORGEJO_LOGIN_JQ" 2>/dev/null
+  tea login list --output json 2>/dev/null | jq -er --arg h "$1" "$FM_PR_FORGEJO_LOGIN_JQ" 2>/dev/null
 }
 
 # The state, merged flag, and head commit of one Forgejo pull request, read

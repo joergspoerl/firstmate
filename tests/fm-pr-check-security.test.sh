@@ -2227,8 +2227,8 @@ SH
 
 # A Forgejo instance on a private LAN often serves plain http on a
 # non-default port. The recorded URL then carries both, the authority in the
-# host field carries the port, and the login match strips the port from both
-# sides. A doctored sidecar whose authority no longer reconstructs the
+# host field carries the port, and only a login for that exact authority may
+# be selected. A doctored sidecar whose authority no longer reconstructs the
 # recorded URL - here with its port dropped - stays silent.
 test_forgejo_merge_watch_http() {
   local dir state out url
@@ -2239,7 +2239,11 @@ test_forgejo_merge_watch_http() {
 #!/usr/bin/env bash
 printf '%s\n' "$*" >> "$FM_TEST_TEA_LOG"
 if [ "${1:-} ${2:-}" = "login list" ]; then
-  printf '[{"name":"main","url":"http://pi4:3001"}]\n'
+  if [ -n "${FM_TEST_TEA_WRONG_PORT_ONLY:-}" ]; then
+    printf '[{"name":"other","url":"http://pi4:3002"}]\n'
+  else
+    printf '[{"name":"main","url":"http://pi4:3001"},{"name":"other","url":"http://pi4:3002"}]\n'
+  fi
   exit 0
 fi
 [ "${1:-}" = api ] || exit 0
@@ -2262,12 +2266,18 @@ SH
   out=$(FM_TEST_TEA_LOG="$dir/tea.log" FM_TEST_TEA_PULL=merged run_poll "$dir")
   [ "$out" = merged ] || fail "plain-http Forgejo poll did not emit exactly one merged line"
   grep -qF -- "api --login main --repo o/r /repos/{owner}/{repo}/pulls/7" "$dir/tea.log" \
-    || fail "the plain-http poll did not resolve the ported host's one login"
+    || fail "the plain-http poll did not resolve the exact ported authority's login"
+
+  : > "$dir/tea.log"
+  out=$(FM_TEST_TEA_LOG="$dir/tea.log" FM_TEST_TEA_PULL=merged FM_TEST_TEA_WRONG_PORT_ONLY=1 run_poll "$dir")
+  [ -z "$out" ] || fail "plain-http Forgejo poll used another port's only login"
+  ! grep -qF -- "api --login" "$dir/tea.log" \
+    || fail "plain-http Forgejo poll read a pull request through another port's login"
 
   sed -i.bak '3s|^pi4:3001$|pi4|' "$state/task-a.pr-poll" && rm -f "$state/task-a.pr-poll.bak"
   out=$(FM_TEST_TEA_LOG="$dir/tea.log" FM_TEST_TEA_PULL=merged run_poll "$dir")
   [ -z "$out" ] || fail "the static poll accepted a sidecar whose recorded authority dropped its port"
-  pass "plain-http Forgejo poll wakes on merged and refuses a port-doctored sidecar"
+  pass "plain-http Forgejo poll resolves only the exact host-and-port login"
 }
 
 # The one tea login for a Forgejo host is found by parsing
@@ -2277,8 +2287,8 @@ SH
 # object per line and as one line, the shapes a line-oriented split misread as
 # a url equal to the login name, refusing every host. Both the sourced helper
 # and the static watcher body, which keeps its own copy of the filter, must
-# resolve every shape, strip scheme, port, and path from the url, and refuse
-# an ambiguous host.
+# resolve every shape by exact authority, preserving any port while stripping
+# scheme, userinfo, and path, and refuse an ambiguous authority.
 test_forgejo_login_list_shapes() {
   local dir state out shape url
   dir=$(make_case forgejo-login-shapes)
@@ -2294,9 +2304,23 @@ test_forgejo_login_list_shapes() {
   },
   {
     "name": "fixture-two",
-    "url": "http://code.internal:3000/",
+    "url": "http://code.internal/",
     "ssh_host": "code.internal",
     "user": "other",
+    "default": "false"
+  },
+  {
+    "name": "fixture-three",
+    "url": "http://code.internal:3000/",
+    "ssh_host": "code.internal",
+    "user": "third",
+    "default": "false"
+  },
+  {
+    "name": "fixture-four",
+    "url": "http://code.internal:3001/",
+    "ssh_host": "code.internal",
+    "user": "fourth",
     "default": "false"
   }
 ]
@@ -2307,7 +2331,7 @@ JSON
   [ "$(wc -l < "$dir/tea-oneline.json")" -eq 1 ] || fail "the one-line fixture is not one line"
   grep -q '^{"name":"fixture-one","url":"https://git.example.com"' "$dir/tea-perobject.json" \
     || fail "the per-object fixture does not put a whole login on one line"
-  printf '[{"name":"a","url":"https://git.example.com"},{"name":"b","url":"https://git.example.com:3000/x"}]\n' \
+  printf '[{"name":"a","url":"https://git.example.com"},{"name":"b","url":"https://git.example.com/x"}]\n' \
     > "$dir/tea-ambiguous.json"
   cat > "$dir/fakebin/tea" <<'SH'
 #!/usr/bin/env bash
@@ -2334,11 +2358,16 @@ SH
       || fail "$shape: the login helper refused a host with exactly one login"
     [ "$out" = fixture-one ] || fail "$shape: the login helper resolved '$out' for git.example.com"
     out=$(FM_TEST_TEA_LOGINS="$dir/tea-$shape.json" PATH="$dir/fakebin:$PATH" fm_pr_forgejo_login code.internal) \
-      || fail "$shape: the login helper refused a url with a port and trailing slash"
+      || fail "$shape: the login helper refused a url with a trailing slash"
     [ "$out" = fixture-two ] || fail "$shape: the login helper resolved '$out' for code.internal"
     out=$(FM_TEST_TEA_LOGINS="$dir/tea-$shape.json" PATH="$dir/fakebin:$PATH" fm_pr_forgejo_login code.internal:3000) \
       || fail "$shape: the login helper refused a recorded authority carrying the instance's own port"
-    [ "$out" = fixture-two ] || fail "$shape: the login helper resolved '$out' for code.internal:3000"
+    [ "$out" = fixture-three ] || fail "$shape: the login helper resolved '$out' for code.internal:3000"
+    out=$(FM_TEST_TEA_LOGINS="$dir/tea-$shape.json" PATH="$dir/fakebin:$PATH" fm_pr_forgejo_login code.internal:3001) \
+      || fail "$shape: the login helper refused the same host's other ported login"
+    [ "$out" = fixture-four ] || fail "$shape: the login helper resolved '$out' for code.internal:3001"
+    ! FM_TEST_TEA_LOGINS="$dir/tea-$shape.json" PATH="$dir/fakebin:$PATH" fm_pr_forgejo_login code.internal:3002 >/dev/null \
+      || fail "$shape: the login helper resolved an authority with no exact registered login"
     ! FM_TEST_TEA_LOGINS="$dir/tea-$shape.json" PATH="$dir/fakebin:$PATH" fm_pr_forgejo_login elsewhere.example >/dev/null \
       || fail "$shape: the login helper resolved a host with no registered login"
     out=$(FM_TEST_TEA_LOGINS="$dir/tea-$shape.json" FM_TEST_TEA_LOG="$dir/tea.log" run_poll "$dir")

@@ -1,0 +1,13 @@
+## bin/fm-pr-check.sh / bin/fm-pr-merge.sh arg-validation surface, disposable FM_HOME
+--- fm-pr-check.sh task-x1 http://pi4:3001/joergspoerl/Scan2Excel/pulls/7 ---
+error: task metadata is unavailable
+exit=1
+--- fm-pr-check.sh task-x1 notaurl (control: still refused) ---
+error: invalid PR check request
+exit=2
+--- fm-pr-merge.sh task-x1 http://pi4:3001/joergspoerl/Scan2Excel/pulls/7 ---
+error: task metadata is unavailable
+exit=1
+--- fm-pr-merge.sh task-x1 notaurl (control: still refused) ---
+error: invalid PR merge request
+exit=2

@@ -1,0 +1,5 @@
+--- base commit 127f0f30 parser ---
+REFUSE http://pi4:3001/joergspoerl/Scan2Excel/pulls/7
+REFUSE http://git.example.com/fixture/fixture-repo/pulls/1
+REFUSE https://git.example.com:8443/my-org/repo/pulls/42
+ACCEPT https://git.example.com/my-org/repo/pulls/42               provider=forgejo host=git.example.com

@@ -1,0 +1,3 @@
+ok - teardown leaves opencode's busy plugin in the returned pool worktree as on main
+ok - a ledger row carrying a plain-http PR URL still proves the anchored continuation
+ok - a malformed ledger row never authorizes a parked-run abort

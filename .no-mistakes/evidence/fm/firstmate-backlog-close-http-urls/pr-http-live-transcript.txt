@@ -1,0 +1,17 @@
+$ fm-pr-check.sh task-a http://pi4:3001/o/r/pulls/7
+armed: state/task-a.check.sh
+--- recorded PR ---
+pr=http://pi4:3001/o/r/pulls/7
+--- poll sidecar ---
+forgejo
+http://pi4:3001/o/r/pulls/7
+pi4:3001
+o/r
+7
+--- open poll output (expected empty) ---
+
+--- merged poll output ---
+merged
+--- only :3002 login; arming :3001 must refuse ---
+error: watching a Forgejo pull request at pi4:3001 requires exactly one 'tea login' registered for that host (see 'tea login list')
+exit=1

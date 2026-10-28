@@ -1,0 +1,13 @@
+$ fm-bearings-board.sh build payload.json
+board: /private/var/folders/1d/5hhdchyx13v6gd2z7bsln_qm0000gn/T/fm-bearings-board.7ipjnB/http-pr-urls-evidence/.lavish/bearings-board.html
+session:
+  file: /private/var/folders/1d/5hhdchyx13v6gd2z7bsln_qm0000gn/T/fm-bearings-board.7ipjnB/http-pr-urls-evidence/.lavish/bearings-board.html
+  url: "http://127.0.0.1:4387/session/0123456789abcdef"
+  status: opened
+session: live
+served: /private/var/folders/1d/5hhdchyx13v6gd2z7bsln_qm0000gn/T/fm-bearings-board.7ipjnB/http-pr-urls-evidence/.lavish/bearings-board.html
+bound: lavish-ed325b8c9ca9800f
+armed: lavish-ed325b8c9ca9800f
+--- unsafe URL must still refuse ---
+fm-bearings-board: board data does not satisfy fm-bearings-board.v1: /private/var/folders/1d/5hhdchyx13v6gd2z7bsln_qm0000gn/T/fm-bearings-board.7ipjnB/http-pr-urls-evidence/payload.json
+exit=1; published-board-unchanged=yes

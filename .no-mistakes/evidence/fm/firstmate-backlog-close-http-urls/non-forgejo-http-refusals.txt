@@ -1,0 +1,12 @@
+$ fm-pr-check.sh task-10905 http://github.com/o/r/pull/1
+error: invalid PR check request
+exit=2; poll-armed=no; pr-recorded=no
+
+$ fm-pr-check.sh task-27690 http://gitlab.com/g/p/-/merge_requests/1
+error: invalid PR check request
+exit=2; poll-armed=no; pr-recorded=no
+
+$ fm-pr-check.sh task-396 http://gerrit.example/c/proj/+/1
+error: invalid PR check request
+exit=2; poll-armed=no; pr-recorded=no
+

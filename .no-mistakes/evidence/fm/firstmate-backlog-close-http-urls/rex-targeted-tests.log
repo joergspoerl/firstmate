@@ -1,0 +1,4 @@
+1..2
+ok - rex: the marks producer plans from status, writes once, repairs without re-notifying, clears on resolve, and honors off
+ok - a done note with a plain-http PR produces a PR-ready Rex mark
+FM_TEST_COMPLETE

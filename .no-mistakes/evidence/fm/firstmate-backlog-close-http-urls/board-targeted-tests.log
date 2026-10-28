@@ -1,0 +1,5 @@
+1..3
+ok - build refuses malformed payloads before touching the board
+ok - build accepts plain-http Forgejo PR URLs on cards and landed rows
+ok - board renders plain-http Forgejo PR links and still rejects unsafe schemes
+FM_TEST_COMPLETE

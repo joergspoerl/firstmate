@@ -1,0 +1,75 @@
+{
+  "schema": "fm-bearings-board.v1",
+  "home": "test-home",
+  "generated": "2026-08-19T00:00Z",
+  "prs_live": false,
+  "captains_call": [
+    {
+      "key": "sample-instruction-layer-refinement-review-decision-perishable-first-admission-choice",
+      "type": "decision",
+      "repo": "sample",
+      "title": "Perishable-first admission",
+      "about": "A payload string that tries to break out: </script><b>x</b>",
+      "decide": "Adopt it?",
+      "options": [
+        {
+          "value": "yes",
+          "label": "Adopt",
+          "hint": "recommended"
+        },
+        {
+          "value": "no",
+          "label": "Keep current"
+        },
+        {
+          "value": "reconcile",
+          "label": "Reconcile",
+          "hint": "Re-check the latest state, then close this with evidence or keep it open with a note"
+        }
+      ],
+      "allow_freeform": true
+    },
+    {
+      "key": "merge.sample-task",
+      "type": "merge",
+      "repo": "sample",
+      "title": "Merge: sample change",
+      "detail": "validation green",
+      "task_id": "sample-task",
+      "pr_url": "http://pi4:3001/o/r/pulls/7",
+      "checks": "green",
+      "risk": "low",
+      "options": [
+        {
+          "value": "merge",
+          "label": "Merge now"
+        },
+        {
+          "value": "hold",
+          "label": "Not yet"
+        }
+      ],
+      "allow_freeform": true
+    }
+  ],
+  "underway": [],
+  "landed": [
+    {
+      "id": "http-landed",
+      "repo": "sample",
+      "what": "Landed through plain-http Forgejo",
+      "owner": "firstmate",
+      "pr_url": "http://pi4:3001/o/r/pulls/8"
+    }
+  ],
+  "charted": [
+    {
+      "id": "sample-queued",
+      "repo": "sample",
+      "title": "Queued work",
+      "reason": "",
+      "dispatchable": true
+    }
+  ],
+  "charted_more": 0
+}

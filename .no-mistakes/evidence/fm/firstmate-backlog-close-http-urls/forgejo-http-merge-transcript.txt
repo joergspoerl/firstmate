@@ -1,0 +1,25 @@
+$ fm-pr-merge.sh task-x1 http://git.self-hosted.example:3000/fixture/fixture-repo/pulls/12
+armed: state/task-x1.check.sh
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+●  WATCHER DOWN - SUPERVISION IS OFF
+●  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).
+●  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.
+●  This is a supervision warning only; the guarded operation WILL still run.
+●  watcher supervision needs Stop-owned automatic recovery; inspect the hook registration and startup status before ending the turn.
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+verified: http://git.self-hosted.example:3000/fixture/fixture-repo/pulls/12 is open and mergeable, with a successful combined status at head cccccccccccccccccccccccccccccccccccccccc
+exit=0
+--- recorded PR ---
+pr=http://git.self-hosted.example:3000/fixture/fixture-repo/pulls/12
+--- tea invocations ---
+login list --output json
+login list --output json
+api --login fm-fixture --repo fixture/fixture-repo /repos/{owner}/{repo}
+api --login fm-fixture --repo fixture/fixture-repo /repos/{owner}/{repo}/pulls/12
+api --login fm-fixture --repo fixture/fixture-repo /repos/{owner}/{repo}/commits/cccccccccccccccccccccccccccccccccccccccc/status?limit=50&page=1
+api --login fm-fixture --repo fixture/fixture-repo /repos/{owner}/{repo}/commits/cccccccccccccccccccccccccccccccccccccccc/status?limit=50&page=2
+api --login fm-fixture --repo fixture/fixture-repo -X POST /repos/{owner}/{repo}/pulls/12/merge -f Do=merge -f head_commit_id=cccccccccccccccccccccccccccccccccccccccc
+api --login fm-fixture --repo fixture/fixture-repo /repos/{owner}/{repo}/pulls/12
+--- only :3001 login; merging :3000 must refuse ---
+error: merging a Forgejo pull request at git.self-hosted.example:3000 requires exactly one 'tea login' registered for that host (see 'tea login list')
+exit=1; merge-attempted=no

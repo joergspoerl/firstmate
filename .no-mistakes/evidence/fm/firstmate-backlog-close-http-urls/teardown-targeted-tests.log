@@ -1,0 +1,5 @@
+1..3
+ok - a ledger row carrying a plain-http PR URL still proves the anchored continuation
+ok - a ledger row for a different head never authorizes a parked-run abort
+ok - teardown recognizes a plain-http PR row as the task's parked continuation
+FM_TEST_COMPLETE

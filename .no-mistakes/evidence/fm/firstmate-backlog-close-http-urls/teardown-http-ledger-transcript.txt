@@ -1,0 +1,8 @@
+$ fm-teardown.sh task-x1  # parked run ledger contains plain-http PR
+/private/var/folders/1d/5hhdchyx13v6gd2z7bsln_qm0000gn/T/fm-teardown-tests.g3Ken2/parked-run-pipeline-advanced-unfetched-http-pr-evidence/project: already current
+teardown task-x1 complete (window firstmate:fm-task-x1, worktree /private/var/folders/1d/5hhdchyx13v6gd2z7bsln_qm0000gn/T/fm-teardown-tests.g3Ken2/parked-run-pipeline-advanced-unfetched-http-pr-evidence/wt)
+Backlog: task-x1 just finished (this home keeps no markdown backlog at /private/var/folders/1d/5hhdchyx13v6gd2z7bsln_qm0000gn/T/fm-teardown-tests.g3Ken2/parked-run-pipeline-advanced-unfetched-http-pr-evidence/data/backlog.md). Update /private/var/folders/1d/5hhdchyx13v6gd2z7bsln_qm0000gn/T/fm-teardown-tests.g3Ken2/parked-run-pipeline-advanced-unfetched-http-pr-evidence/data/backlog.md - move task-x1 to Done, keep Done to the 10 most recent, then re-scan Queued and dispatch only work whose blockers are gone and date is due.
+teardown: no-mistakes run for task-x1 is parked at a gate; aborting before the worker is removed
+exit=0
+--- no-mistakes invocation ---
+abort --run 01RUN

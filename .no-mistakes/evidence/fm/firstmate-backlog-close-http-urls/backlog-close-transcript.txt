@@ -1,0 +1,43 @@
+$ fm-bootstrap.sh  # replay plain-http Forgejo close
+BOOTSTRAP_INFO: closed the backlog item for atomic-heal-http-forgejo-evidence that an interrupted cleanup left open
+OUTDATED: treehouse (installed: unparseable; requires --lease support; upgrade: treehouse update)
+OUTDATED: no-mistakes (installed: unparseable; requires 1.46.0; upgrade: no-mistakes update)
+OUTDATED: gh-axi (installed: unparseable; requires 0.1.29; upgrade: gh-axi update)
+--- persisted task after close ---
+task:
+  id: atomic-heal-http-forgejo-evidence
+  title: item for atomic-heal-http-forgejo-evidence
+  state: done
+  blocked: no
+  blocked_by: none
+  held: no
+  hold_reason: "-"
+  hold_kind: "-"
+  hold_until: "-"
+  kind: ship
+  repo: "-"
+  priority: "-"
+  created: "-"
+  closed: 2026-10-28
+  deps: none
+  links: none
+  body: "PR http://pi4:3001/joergspoerl/Scan2Excel/pulls/7"
+--- https Forgejo close keeps its PR link ---
+task:
+  id: atomic-heal-https-forgejo-evidence
+  title: "item for atomic-heal-https-forgejo-evidence https://git.example.com/joergspoerl/Scan2Excel/pulls/8"
+  state: done
+  blocked: no
+  blocked_by: none
+  held: no
+  hold_reason: "-"
+  hold_kind: "-"
+  hold_until: "-"
+  kind: ship
+  repo: "-"
+  priority: "-"
+  created: "-"
+  closed: 2026-10-28
+  deps: none
+  links: "pr:https://git.example.com/joergspoerl/Scan2Excel/pulls/8"
+  body: ""

@@ -1,0 +1,2 @@
+$ fm-rex-marks.sh plan t1
+t1	done		PR ready: PR http://pi4:3001/o/r/pulls/9 merged

@@ -1,0 +1,10 @@
+1..8
+ok - raw-byte parser accepts canonical URLs and rejects the complete adversarial matrix
+ok - plain-http Forgejo poll resolves only the exact host-and-port login
+ok - Forgejo login match parses tea's JSON in every line shape, in the helper and the static poll
+ok - GitLab merge requests are followed on any instance and never wake falsely
+ok - the Gerrit watch wakes only on an explicit merged status and never on submittability
+ok - PR and teardown entrypoints reject invalid arguments before every side effect
+ok - plain-http Forgejo arming and polling use only the exact host-and-port login
+ok - GitHub, GitLab, and Gerrit entrypoints still reject plain-http URLs without side effects
+FM_TEST_COMPLETE
